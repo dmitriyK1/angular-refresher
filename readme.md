@@ -362,4 +362,4 @@ Why?: Constants can be injected into any angular component, including providers.
 
 ================================================================================
 
-
+**Unbind event listeners on $scope.$destroy**
