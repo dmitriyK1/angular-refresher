@@ -59,8 +59,8 @@ SomeService.$inject = [];
 
 ================================================================================
 
-Use bindToController option in directive definition object in order to set
-properties of directive isolate scope on controller instance instead of $scope:
+**Use bindToController option in directive definition object in order to set
+properties of directive isolate scope on controller instance instead of $scope:**
 
 
 .directive('tabs', tabsDirective);
@@ -78,7 +78,7 @@ function tabsDirective() {
 
 ================================================================================
 
-Use Controller suffix instead of Ctrl for better readability:
+**Use Controller suffix instead of Ctrl for better readability:**
 
 .controller('MainController', MainController);
 
@@ -86,7 +86,7 @@ function MainController() {}
 
 ================================================================================
 
-Reuse logic via services instead of controllers reuse
+**Reuse logic via services instead of controllers reuse**
 
 .factory('dataService', dataService);
 
@@ -96,7 +96,7 @@ function SecondController(dataService) { }
 
 ================================================================================
 
-Return promise from a services:
+**Return promise from a services:**
 
 .factory('dataService', function($http) {
     var service = {
@@ -122,7 +122,7 @@ Return promise from a services:
 
 ================================================================================
 
-Avoid using ng-controller ( use controllers via directives instead )
+**Avoid using ng-controller ( use controllers via directives instead )**
 
 .directive('usersList', userListDirective);
 
@@ -138,8 +138,8 @@ function usersListDirective() {
 
 ================================================================================
 
-Avoid using ng-controller in views for routes ( use controllers in config for
-routes instead ):
+**Avoid using ng-controller in views for routes ( use controllers in config for
+routes instead ):**
 
 /* avoid - when using with a route and dynamic pairing is desired */
 
@@ -180,8 +180,8 @@ function config($routeProvider) {
 
 ================================================================================
 
-Controllers are classes so define controllers on prototypes in order to extend
-controllers via inheritance:
+**Controllers are classes so define controllers on prototypes in order to extend
+controllers via inheritance:**
 
 .controller('BaseController', BaseController);
 
@@ -195,7 +195,7 @@ AppController.prototype = Object.create( BaseController.prototype );
 
 ================================================================================
 
-Use consistent file names:
+**Use consistent file names:**
 
 // controllers
 avengers.controller.js
@@ -224,11 +224,11 @@ avenger-profile.directive.spec.js
 
 ================================================================================
 
-Avoid using ng- prefix for directives and $ for custom component names because they are reserved
+**Avoid using ng- prefix for directives and $ for custom component names because they are reserved**
 
 ================================================================================
 
-Keep project directory structure as flat as possible; use folders-by-feature structure
+**Keep project directory structure as flat as possible; use folders-by-feature structure**
 
 /**
  * recommended
@@ -269,7 +269,7 @@ app/
 
 ================================================================================
 
-Config block
+**Config block**
 
 Inject code into module configuration that must be configured before running
 the angular app. Ideal candidates include providers and constants.
@@ -300,7 +300,7 @@ function configure (routerHelperProvider, exceptionHandlerProvider, toastr) {
 
 ================================================================================
 
-Run Blocks
+**Run Blocks**
 
 Any code that needs to run when an application starts should be declared in
 a factory, exposed via a function, and injected into the run block.
@@ -321,8 +321,8 @@ function runBlock(authenticator, translator) {
 
 ================================================================================
 
-Use Angular $ Wrapper Services instead of native implementations because they
-trigger $digest cycle as needed thus keeping data binding in sync
+**Use Angular $ Wrapper Services instead of native implementations because they
+trigger $digest cycle as needed thus keeping data binding in sync**
 
 $timeout
 $interval
@@ -332,7 +332,7 @@ $document
 
 ================================================================================
 
-Use constants to expose vendor libraries
+**Use constants to expose vendor libraries**
 
 Why?: Provides a way to inject vendor libraries that otherwise are globals.
 This improves code testability by allowing you to more easily know what the
