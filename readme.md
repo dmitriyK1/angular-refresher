@@ -28,6 +28,20 @@ function dataService() {
     function pushData() {}
 }
 
+================================================================================
+
+Use function declarations instead of anonymous functions to keep a structure of code more flat
+
+angular
+  .module('app', [])
+  .controller('MainCtrl', MainCtrl)
+  .service('SomeService', SomeService);
+
+function MainCtrl () { }
+function SomeService () { }
+
+MainCtrl.$inject = [];
+SomeService.$inject = [];
 
 ================================================================================
 
