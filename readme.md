@@ -2,9 +2,8 @@
 
 This is a quick refresher of AngularJS concepts compiled from various articles online.
 
-**Table of Contents**
 
-Use revealing module pattern to expose interface of services:
+**Use revealing module pattern to expose interface of services:**
 
 Why?: Placing the callable members at the top makes it easy to read and helps
 you instantly identify which members of the service can be called and must be
@@ -30,7 +29,7 @@ function dataService() {
 
 ================================================================================
 
-Use function declarations instead of anonymous functions to keep a structure of code more flat
+**Use function declarations instead of anonymous functions to keep a structure of code more flat**
 
 angular
   .module('app', [])
@@ -45,7 +44,7 @@ SomeService.$inject = [];
 
 ================================================================================
 
-Send all data in directive isolate scope via one object if possible:
+**Send all data in directive isolate scope via one object if possible:**
 
 <input ng-model="user.name">
 <input ng-model="user.role">
@@ -54,7 +53,7 @@ Send all data in directive isolate scope via one object if possible:
 
 ================================================================================
 
-Use one-time binding to show rarely updated data to decrease performance overhead:
+**Use one-time binding to show rarely updated data to decrease performance overhead:**
 
 {{:: page.title  }}
 
