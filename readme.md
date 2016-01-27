@@ -46,11 +46,10 @@ SomeService.$inject = [];
 
 **Send all data in directive isolate scope via one object if possible:**
 
-`<input ng-model="user.name">`
-<br>
-`<input ng-model="user.role">`
+```<input ng-model="user.name">
+<input ng-model="user.role">
 
-`<user-card user="user"></user-card>`
+```<user-card user="user"></user-card>
 
 ================================================================================
 
