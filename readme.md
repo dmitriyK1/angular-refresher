@@ -64,7 +64,9 @@ SomeService.$inject = [];
 
 **Use one-time binding to show rarely updated data to decrease performance overhead:**
 
-{{:: page.title  }}
+```html
+<h1>{{:: page.title  }}</h1>
+```
 
 ================================================================================
 
@@ -432,4 +434,136 @@ igor-)
 Exception: DOM manipulation may occur in services for DOM elements disconnected
 from the rest of the view, e.g. dialogs or keyboard shortcuts.
 
+================================================================================
+
+**Limit $scope usage**
+
+Only use $scope in controllerAs when necessary; for example, publishing and
+subscribing events using $emit, $broadcast, $on or $watch. Try to limit the use
+of these, however, and treat $scope as a special use case
+
+================================================================================
+
+**controllerAs 'vm': Capture the this context of the Controller using vm, standing for ViewModel**
+
+Why? : Function context changes the this value, use it to avoid .bind() calls and scoping issues
+
+================================================================================
+
+**ES6: Avoid var vm = this; when using ES6**
+
+// recommended
+```javascript
+function MainCtrl () {
+
+  let doSomething = arg => {
+    console.log(this);
+  };
+
+  // exports
+  this.doSomething = doSomething;
+
+}
+```
+
+Why? : Use ES6 arrow functions when necessary to access the this value lexically
+
+================================================================================
+
+**Always return a host Object instead of the revealing Module pattern due to the way Object references are bound and updated**
+
+```javascript
+function AnotherService () {
+  var AnotherService = {};
+  AnotherService.someValue = '';
+  AnotherService.someMethod = function () {
+
+  };
+  return AnotherService;
+}
+angular
+  .module('app')
+  .factory('AnotherService', AnotherService);
+```
+
+Why? : Primitive values cannot update alone using the revealing module pattern
+
+================================================================================
+
+**Use UpperCase for everything except filters and directives**
+
+Directives and Filters are the only providers that have the first letter as
+lowercase; this is due to strict naming conventions in Directives. Angular
+hyphenates camelCase, so dragUpload will become <div drag-upload></div> when
+used on an element.
+
+================================================================================
+
+**Global filters: Create global filters using angular.filter() only. Never use local filters inside Controllers/Services**
+
+This enhances testing and reusability
+
+================================================================================
+
+**$rootScope: Use only $emit as an application-wide event bus and remember to unbind listeners**
+
+```javascript
+// all $rootScope.$on listeners
+$rootScope.$emit('customEvent', data);
+```
+================================================================================
+
+**Destroy $rootScope event listeners when a relevant child $scope is destroyed**
+
+Because the $rootScope is never destroyed, $rootScope.$on listeners aren't
+either, unlike $scope.$on listeners and will always persist, so they need
+destroying when the relevant $scope fires the $destroy event
+
+```javascript
+// call the closure
+var unbind = $rootScope.$on('customEvent'[, callback]);
+$scope.$on('$destroy', unbind);
+```
+
+For multiple $rootScope listeners, use an Object literal and loop each one on the $destroy event to unbind all automatically
+
+```javascript
+var unbind = [
+  $rootScope.$on('customEvent1'[, callback]),
+  $rootScope.$on('customEvent2'[, callback]),
+  $rootScope.$on('customEvent3'[, callback])
+];
+$scope.$on('$destroy', function () {
+  unbind.forEach(function (fn) {
+    fn();
+  });
+});
+```
+================================================================================
+
+**Consider $scope.$digest: Use $scope.$digest over $scope.$apply where it makes sense. Only child scopes will update**
+
+```javascript
+$scope.$digest();
+```
+
+Why? : $scope.$apply will call $rootScope.$digest, which causes the entire
+application $$watchers to dirty-check again. Using $scope.$digest will dirty
+check current and child scopes from the initiated $scope
+
+================================================================================
+
+**use ng-annotate to automate dependency injection**
+
+```javascript
+/**
+ * @ngInject
+ */
+function MainCtrl (SomeService) {
+  this.doSomething = SomeService.doSomething;
+}
+angular
+  .module('app')
+  .controller('MainCtrl', MainCtrl);
+```
 
