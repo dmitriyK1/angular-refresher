@@ -91,24 +91,29 @@ function tabsDirective() {
 
 **Use Controller suffix instead of Ctrl for better readability:**
 
+```javascript
 .controller('MainController', MainController);
 
 function MainController() {}
+```
 
 ================================================================================
 
 **Reuse logic via services instead of controllers reuse**
 
+```javascript
 .factory('dataService', dataService);
 
 function FirstController(dataService) { }
 
 function SecondController(dataService) { }
+```
 
 ================================================================================
 
 **Return promise from a services:**
 
+```javascript
 .factory('dataService', function($http) {
     var service = {
         getData: getData
@@ -130,11 +135,13 @@ function SecondController(dataService) { }
             this.data = data;
         });
 });
+```
 
 ================================================================================
 
 **Avoid using ng-controller ( use controllers via directives instead )**
 
+```javascript
 .directive('usersList', userListDirective);
 
 function usersListDirective() {
@@ -146,6 +153,7 @@ function usersListDirective() {
 
     return ddo;
 }
+```
 
 ================================================================================
 
@@ -155,6 +163,7 @@ routes instead ):**
 /* avoid - when using with a route and dynamic pairing is desired */
 
 // route-config.js
+```javascript
 angular
     .module('app')
     .config(config);
@@ -165,14 +174,18 @@ function config($routeProvider) {
           templateUrl: 'avengers.html'
         });
 }
+```
 <!-- avengers.html -->
+```html
 <div ng-controller="AvengersController as vm">
 </div>
+```
 
 
 /* recommended */
 
 // route-config.js
+```javascript
 angular
     .module('app')
     .config(config);
@@ -185,15 +198,19 @@ function config($routeProvider) {
             controllerAs: 'vm'
         });
 }
+```
 <!-- avengers.html -->
+```html
 <div>
 </div>
+```
 
 ================================================================================
 
 **Controllers are classes so define controllers on prototypes in order to extend
 controllers via inheritance:**
 
+```javascript
 .controller('BaseController', BaseController);
 
 function BaseController() { }
@@ -203,6 +220,7 @@ BaseController.prototype.log = function() {};
 function AppController() {}
 
 AppController.prototype = Object.create( BaseController.prototype );
+```
 
 ================================================================================
 
@@ -286,6 +304,7 @@ Inject code into module configuration that must be configured before running
 the angular app. Ideal candidates include providers and constants.
 Why?: This makes it easier to have less places for configuration.
 
+```javascript
 angular
     .module('app')
     .config(configure);
@@ -308,6 +327,7 @@ function configure (routerHelperProvider, exceptionHandlerProvider, toastr) {
         });
     }
 }
+```
 
 ================================================================================
 
@@ -319,6 +339,7 @@ a factory, exposed via a function, and injected into the run block.
 Why?: Code directly in a run block can be difficult to test. Placing in
 a factory makes it easier to abstract and mock.
 
+```javascript
 angular
     .module('app')
     .run(runBlock);
@@ -329,17 +350,20 @@ function runBlock(authenticator, translator) {
     authenticator.initialize();
     translator.initialize();
 }
+```
 
 ================================================================================
 
 **Use Angular $ Wrapper Services instead of native implementations because they
 trigger $digest cycle as needed thus keeping data binding in sync**
 
+```javascript
 $timeout
 $interval
 $http
 $window
 $document
+```
 
 ================================================================================
 
@@ -353,6 +377,7 @@ you to mock these dependencies, where it makes sense.
 // constants.js
 
 /* global toastr:false, moment:false */
+```javascript
 (function() {
     'use strict';
 
@@ -361,6 +386,7 @@ you to mock these dependencies, where it makes sense.
         .constant('toastr', toastr)
         .constant('moment', moment);
 })();
+```
 
 When constants are used only for a module that may be reused in multiple
 applications, place constants in a file per module named after the module.
