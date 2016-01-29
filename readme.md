@@ -6,7 +6,7 @@ This is a quick refresher of AngularJS concepts compiled from various articles o
 
 ![](modularity-1.png)
 
-Use revealing module pattern to expose interface of services:
+**Use revealing module pattern to expose interface of services:**
 
 Why?: Placing the callable members at the top makes it easy to read and helps
 you instantly identify which members of the service can be called and must be
@@ -14,6 +14,7 @@ unit tested (and/or mocked).
 Why?: This is especially helpful when the file gets longer as it helps avoid
 the need to scroll to see what is exposed.
 
+```javascript
 .factory('dataService', dataService);
 
 function dataService() {
@@ -29,11 +30,13 @@ function dataService() {
     function getData() {}
     function pushData() {}
 }
+```
 
 ================================================================================
 
-Use function declarations instead of anonymous functions to keep a structure of code more flat
+**Use function declarations instead of anonymous functions to keep a structure of code more flat**
 
+```javascript
 angular
   .module('app', [])
   .controller('MainCtrl', MainCtrl)
@@ -44,28 +47,32 @@ function SomeService () { }
 
 MainCtrl.$inject = [];
 SomeService.$inject = [];
+```
 
 ================================================================================
 
-Send all data in directive isolate scope via one object if possible:
+**Send all data in directive isolate scope via one object if possible:**
 
+```html
 <input ng-model="user.name">
 <input ng-model="user.role">
 
 <user-card user="user"></user-card>
+```
 
 ================================================================================
 
-Use one-time binding to show rarely updated data to decrease performance overhead:
+**Use one-time binding to show rarely updated data to decrease performance overhead:**
 
 {{:: page.title  }}
 
 ================================================================================
 
-Use bindToController option in directive definition object in order to set
-properties of directive isolate scope on controller instance instead of $scope:
+**Use bindToController option in directive definition object in order to set
+properties of directive isolate scope on controller instance instead of $scope:**
 
 
+```javascript
 .directive('tabs', tabsDirective);
 
 function tabsDirective() {
@@ -78,10 +85,11 @@ function tabsDirective() {
 
     return directiveDefinitionObject;
 }
+```
 
 ================================================================================
 
-Use Controller suffix instead of Ctrl for better readability:
+**Use Controller suffix instead of Ctrl for better readability:**
 
 .controller('MainController', MainController);
 
@@ -89,7 +97,7 @@ function MainController() {}
 
 ================================================================================
 
-Reuse logic via services instead of controllers reuse
+**Reuse logic via services instead of controllers reuse**
 
 .factory('dataService', dataService);
 
@@ -99,7 +107,7 @@ function SecondController(dataService) { }
 
 ================================================================================
 
-Return promise from a services:
+**Return promise from a services:**
 
 .factory('dataService', function($http) {
     var service = {
@@ -125,7 +133,7 @@ Return promise from a services:
 
 ================================================================================
 
-Avoid using ng-controller ( use controllers via directives instead )
+**Avoid using ng-controller ( use controllers via directives instead )**
 
 .directive('usersList', userListDirective);
 
@@ -141,8 +149,8 @@ function usersListDirective() {
 
 ================================================================================
 
-Avoid using ng-controller in views for routes ( use controllers in config for
-routes instead ):
+**Avoid using ng-controller in views for routes ( use controllers in config for
+routes instead ):**
 
 /* avoid - when using with a route and dynamic pairing is desired */
 
@@ -183,8 +191,8 @@ function config($routeProvider) {
 
 ================================================================================
 
-Controllers are classes so define controllers on prototypes in order to extend
-controllers via inheritance:
+**Controllers are classes so define controllers on prototypes in order to extend
+controllers via inheritance:**
 
 .controller('BaseController', BaseController);
 
@@ -198,7 +206,7 @@ AppController.prototype = Object.create( BaseController.prototype );
 
 ================================================================================
 
-Use consistent file names:
+**Use consistent file names:**
 
 // controllers
 avengers.controller.js
@@ -227,11 +235,11 @@ avenger-profile.directive.spec.js
 
 ================================================================================
 
-Avoid using ng- prefix for directives and $ for custom component names because they are reserved
+**Avoid using ng- prefix for directives and $ for custom component names because they are reserved**
 
 ================================================================================
 
-Keep project directory structure as flat as possible; use folders-by-feature structure
+**Keep project directory structure as flat as possible; use folders-by-feature structure**
 
 /**
  * recommended
@@ -272,7 +280,7 @@ app/
 
 ================================================================================
 
-Config block
+**Config block**
 
 Inject code into module configuration that must be configured before running
 the angular app. Ideal candidates include providers and constants.
@@ -303,7 +311,7 @@ function configure (routerHelperProvider, exceptionHandlerProvider, toastr) {
 
 ================================================================================
 
-Run Blocks
+**Run Blocks**
 
 Any code that needs to run when an application starts should be declared in
 a factory, exposed via a function, and injected into the run block.
@@ -324,8 +332,8 @@ function runBlock(authenticator, translator) {
 
 ================================================================================
 
-Use Angular $ Wrapper Services instead of native implementations because they
-trigger $digest cycle as needed thus keeping data binding in sync
+**Use Angular $ Wrapper Services instead of native implementations because they
+trigger $digest cycle as needed thus keeping data binding in sync**
 
 $timeout
 $interval
@@ -335,7 +343,7 @@ $document
 
 ================================================================================
 
-Use constants to expose vendor libraries
+**Use constants to expose vendor libraries**
 
 Why?: Provides a way to inject vendor libraries that otherwise are globals.
 This improves code testability by allowing you to more easily know what the
@@ -363,4 +371,4 @@ Why?: Constants can be injected into any angular component, including providers.
 
 ================================================================================
 
-
+**Unbind event listeners on $scope.$destroy**
