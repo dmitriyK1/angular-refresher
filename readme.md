@@ -566,4 +566,24 @@ angular
   .module('app')
   .controller('MainCtrl', MainCtrl);
 ```
+================================================================================
 
+**Use ng-strict-di attribute on ng-app to ensure all functions with dependencies are properly annotated**
+
+```html
+<div ng-app="myApp" ng-strict-di>
+```
+================================================================================
+
+**Debounce ng-model**
+
+If you know there is going to be a lot of changes coming from an ng-model, you
+can de-bounce the input.
+
+For example if you have a search input like Google, you can de-bounce it by
+setting the following ng-model option: ng-model-options="{ debounce: 250 }.
+
+This will ensure that the digest cycle due to the changes in this input model
+will get triggered no more then once per 250ms .
+
+================================================================================
