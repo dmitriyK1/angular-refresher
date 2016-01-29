@@ -4,6 +4,8 @@ This is a quick refresher of AngularJS concepts compiled from various articles o
 
 **Table of Contents**
 
+![](modularity-1.png)
+
 Use revealing module pattern to expose interface of services:
 
 Why?: Placing the callable members at the top makes it easy to read and helps
