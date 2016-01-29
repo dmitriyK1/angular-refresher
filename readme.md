@@ -226,6 +226,7 @@ AppController.prototype = Object.create( BaseController.prototype );
 
 **Use consistent file names:**
 
+```
 // controllers
 avengers.controller.js
 avengers.controller.spec.js
@@ -250,6 +251,7 @@ avengers.config.js
 // directives
 avenger-profile.directive.js
 avenger-profile.directive.spec.js
+```
 
 ================================================================================
 
@@ -258,6 +260,8 @@ avenger-profile.directive.spec.js
 ================================================================================
 
 **Keep project directory structure as flat as possible; use folders-by-feature structure**
+
+```
 
 /**
  * recommended
@@ -295,6 +299,7 @@ app/
         sessions.routes.js
         session-detail.html
         session-detail.controller.js
+```
 
 ================================================================================
 
