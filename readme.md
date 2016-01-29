@@ -78,14 +78,14 @@ properties of directive isolate scope on controller instance instead of $scope:*
 .directive('tabs', tabsDirective);
 
 function tabsDirective() {
-    var directiveDefinitionObject = {
+    var ddo = {
         bindToController: true,
         link: link
     };
 
-    function link() {}
+    return ddo;
 
-    return directiveDefinitionObject;
+    function link() {}
 }
 ```
 
