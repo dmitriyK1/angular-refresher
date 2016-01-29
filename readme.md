@@ -256,6 +256,9 @@ avenger-profile.directive.spec.js
 ================================================================================
 
 **Avoid using ng- prefix for directives and $ for custom component names because they are reserved**
+Reserve $ for Angular properties and services
+Do not use $ to prepend your own object properties and service identifiers.
+Consider this style of naming reserved by AngularJS and jQuery.
 
 ================================================================================
 
@@ -403,3 +406,30 @@ Why?: Constants can be injected into any angular component, including providers.
 ================================================================================
 
 **Unbind event listeners on $scope.$destroy**
+
+================================================================================
+
+**Use events on scopes via .$broadcast(), .$emit() and .$on() sparingly**
+
+Events that are relevant globally across the entire app (such as a user
+authenticating or the app closing). If you want events specific to modules,
+services or widgets you should consider Services, Directive Controllers, or 3rd
+Party Libs 
+
+================================================================================
+
+**Namespace distributed code**
+
+You shouldn't worry about prefixing internal code, but anything you plan to
+OpenSource should be namespaced The ng- is reserved for core directives.
+Purpose-namespacing (i18n- or geo-) is better than owner-namespacing (djs- or
+igor-)
+
+================================================================================
+
+**All DOM manipulation should be done inside directives**
+
+Exception: DOM manipulation may occur in services for DOM elements disconnected
+from the rest of the view, e.g. dialogs or keyboard shortcuts.
+
+
