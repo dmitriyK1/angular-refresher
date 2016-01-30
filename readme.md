@@ -587,3 +587,21 @@ This will ensure that the digest cycle due to the changes in this input model
 will get triggered no more then once per 250ms .
 
 ================================================================================
+
+**Keep one component per file**
+
+```javascript
+//app.controller.js
+  .controller('AppController', AppController)
+
+  function AppController() {}
+
+// logger.service.js
+  .factory('logger', factory)
+  function factory() {
+    var logger = {};
+
+    return logger;
+  }
+```
+
