@@ -42,11 +42,11 @@ angular
   .controller('MainCtrl', MainCtrl)
   .service('SomeService', SomeService);
 
-function MainCtrl () { }
-function SomeService () { }
-
 MainCtrl.$inject = [];
 SomeService.$inject = [];
+
+function MainCtrl () { }
+function SomeService () { }
 ```
 
 ================================================================================
@@ -556,9 +556,7 @@ check current and child scopes from the initiated $scope
 **use ng-annotate to automate dependency injection**
 
 ```javascript
-/**
- * @ngInject
- */
+/* @ngInject */
 function MainCtrl (SomeService) {
   this.doSomething = SomeService.doSomething;
 }
