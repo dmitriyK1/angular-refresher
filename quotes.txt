@@ -1,0 +1,57 @@
+
+https://www.airpair.com/angularjs/posts/angularjs-performance-large-applications
+http://www.alexkras.com/11-tips-to-improve-angularjs-performance/
+https://www.binpress.com/tutorial/speeding-up-angular-js-with-simple-optimizations/135
+http://www.html5rocks.com/en/tutorials/speed/html5/
+https://developer.chrome.com/devtools/docs/rendering-settings
+https://www.ng-book.com/p/Optimizing-Angular-Apps/
+http://ng-perf.com/
+http://bahmutov.calepin.co/improving-angular-web-app-performance-example.html
+http://javascript.ru/forum/angular/42001-angular-performance-optimization-optimizaciya-proizvoditelnosti.html
+http://tech.small-improvements.com/2013/09/10/angularjs-performance-with-large-lists/
+http://www.bennadel.com/blog/2596-case-study-using-scope-digest-as-a-performance-optimization-in-angularjs.htm
+http://www.alexkras.com/11-tips-to-improve-angularjs-performance
+http://blog.scalyr.com/2013/10/angularjs-1200ms-to-35ms/
+
+
+
+
+
+https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub
+
+We group elements of an application either under a "components" directory (for
+common elements reused elsewhere in the app), or under meaningfully-named
+directories for recursively-nested sub-sections that represent structural
+"view" elements or routes within the app:
+    
+Components
+    A components directory contains directives, services, filters, and related files.
+    Common data (images, models, utility files, etc.) might also live under components (e.g. components/lib/), or it can be stored externally.
+    Components can have subcomponent directories, including appended naming where possible.
+    Components may contain module definitions, if appropriate. (See "Module definitions" below.)
+
+Sub-sections
+    These top-level (or nested) directories contains only templates (.html, .css), controllers, and module definitions.  
+    We stamp out sub-level child sub-sections using the same unit template (i.e., a section is made up of templates, controllers, and module definitions), going deeper and deeper as needed to reflect the inheritance of elements in the UI.
+    For a very simple app, with just one controller, sub-section directories might not be needed, since everything is defined in the top-level files.
+    Sub-sections may or may not have their own modules, depending on how complex the code is.  (See "Module definitions" below.)
+
+
+
+
+Don't use a scalar variable (null is scalar) as a model within an isolate scope (such as ng-if). 
+angular.module("myApp", [])
+.controller("BadController", function($scope){
+  // This variable starts as a scalar value. Danger! Danger!
+  $scope.myModel = null;
+  $scope.models = ["red", "white", "blue"];
+})
+
+.controller("GoodController", function($scope){
+  // This object will be accessible in all isolate scope underneath this scope.
+  $scope.uiState = {};
+  // This variable is inside a non-scalar variable. All is good.
+  $scope.uiState.myModel = null;
+  $scope.uiState.models = ["red", "white", "blue"];
+
+});
