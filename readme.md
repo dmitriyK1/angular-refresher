@@ -2,7 +2,7 @@
 
 This is a quick refresher of AngularJS concepts compiled from various articles online.
 
-**Table of Contents**
+**Place all common dependencies in one cross-app module:**
 
 ![](modularity-1.png)
 
