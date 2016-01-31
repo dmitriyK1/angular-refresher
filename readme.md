@@ -555,7 +555,7 @@ check current and child scopes from the initiated $scope
 
 ================================================================================
 
-**Use ng-annotate to automate dependency injection and keep code free from manual injection declarations**
+**Use ng-annotate to automate dependency injection and keep code free from manual injection annotations**
 
 ```javascript
 /* @ngInject */
