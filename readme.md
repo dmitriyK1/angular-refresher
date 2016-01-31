@@ -4,6 +4,8 @@ This is a quick refresher of AngularJS concepts compiled from various articles o
 
 **Place all common dependencies in one cross-app module:**
 
+Why? To keep feature modules free from dependencies declaration for each module
+
 ![](modularity-1.png)
 
 **Use revealing module pattern to expose interface of services:**
