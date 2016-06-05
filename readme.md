@@ -607,7 +607,7 @@ will get triggered no more then once per 250ms .
 
 ================================================================================
 
-Prevent hard-coding watch property name:
+**Prevent hard-coding watch property name:**
 
 ```javascript
 $scope.$watch( () => vm.myProp, (newValue, oldValue) => console.log(newValue) );
@@ -619,3 +619,26 @@ Instead of:
   // OR
   $scope.$watch('$ctrl.myProp', (newValue, oldValue) => ...);
 ```
+
+================================================================================
+
+**Disable debug info for production to improve performance:**
+
+```javascript
+  .config(function($compileProvider) {
+    $compileProvider.debugInfoEnabled = false;
+  })
+```
+
+================================================================================
+
+**Use ng-if instead of ng-show/ng-hide to disable a number of watchers**
+
+================================================================================
+
+**If you have a big ng-repeat sometimes adding “track by” can speed things up:**
+
+Default tracking function tracks items by their identity, use tracking by
+$index instead to provide a performance boost for large lists
+
+<li ng-repeat="item in items track by $index"></li>
