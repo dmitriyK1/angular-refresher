@@ -639,8 +639,13 @@ Instead of:
 **If you have a big ng-repeat sometimes adding “track by” can speed things up:**
 
 Default tracking function tracks items by their identity, use tracking by
-$index instead to provide a performance boost for large lists
+identifier instead to provide a performance boost for large lists ( to prevent re-rendering same objects )
 
 ```html
 <li ng-repeat="item in items track by $index"></li>
+
+<li ng-repeat="item in items track by item.id"></li>
 ```
+
+http://www.codelord.net/2014/04/15/improving-ng-repeat-performance-with-track-by/
+
