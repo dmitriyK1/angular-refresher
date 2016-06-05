@@ -686,3 +686,28 @@ a Model, don’t use Angular for it. This logic will live inside the link
 callback.
 Inside the link callback, we should advocate the use of addEventListener or
 jQuery’s “on” method.
+
+================================================================================
+
+**Limit DOM filters (avoid inline filters):**
+
+Angular runs every single filter twice per $digest cycle once something has
+changed. The first run is from the $$watchers detecting any changes, the second
+run is to see if there are further changes that need updated values.
+
+Here’s an example of a DOM filter, these are the slowest type of filter,
+preprocessing our data would be much faster. If you can, avoid the inline
+filter syntax.
+
+```html
+{{ filter_expression | filter : expression : comparator }}
+```
+
+Angular includes a $filter provider, which you can use to run filters in your
+JavaScript before parsing into the DOM. 
+This will preprocess our data before sending it to the View, which avoids the
+step of parsing the DOM
+```javascript
+$filter('filter')(array, expression, comparator);
+```
+
