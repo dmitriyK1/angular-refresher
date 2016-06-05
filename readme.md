@@ -649,3 +649,38 @@ identifier instead to provide a performance boost for large lists ( to prevent r
 
 http://www.codelord.net/2014/04/15/improving-ng-repeat-performance-with-track-by/
 
+================================================================================
+
+**Avoid using ng-repeat when possible:**
+
+For example, instead of rendering a global navigation using ng-repeat, we could
+create our own navigation using the $interpolate provider to render our
+template against an Object and convert it into DOM nodes.
+
+================================================================================
+
+**Substitude ng-show/ng-hide and other built-in directives for event listeners (to prevent adding value to $$watchers):**
+
+// BAD
+```html
+<div ng-show=”something”></div>
+```
+```javascript
+$scope.something = false;
+$scope.someMethod = function () {
+  $scope.something = true;
+};
+```
+
+// GOOD
+```javascript
+var menu = $element.find(‘ul’);
+menu.hide();
+$scope.someMethod = function () {
+  menu.show();
+};
+```
+
+If you’re building a Directive and some of the logic doesn’t need to rely on
+a Model, don’t use Angular for it. This logic will live inside the link
+callback.
