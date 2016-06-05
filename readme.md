@@ -684,3 +684,5 @@ $scope.someMethod = function () {
 If you’re building a Directive and some of the logic doesn’t need to rely on
 a Model, don’t use Angular for it. This logic will live inside the link
 callback.
+Inside the link callback, we should advocate the use of addEventListener or
+jQuery’s “on” method.
