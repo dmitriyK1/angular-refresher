@@ -719,3 +719,11 @@ $filter('filter')(array, expression, comparator);
 - $rootScope event listeners
 - DOM event listeners
 - data stored in services
+
+No need to deregister watchers, they will be removed when the scope is destroyed,
+you don't need to manage those 
+```javascript
+var listener = $scope.$watch("quartz", function () {});
+// ...
+listener();
+```
