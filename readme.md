@@ -641,4 +641,6 @@ Instead of:
 Default tracking function tracks items by their identity, use tracking by
 $index instead to provide a performance boost for large lists
 
+```html
 <li ng-repeat="item in items track by $index"></li>
+```
