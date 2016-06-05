@@ -711,3 +711,11 @@ step of parsing the DOM
 $filter('filter')(array, expression, comparator);
 ```
 
+================================================================================
+
+**Clear after yourself:**
+
+- timers
+- $rootScope event listeners
+- DOM event listeners
+- data stored in services
