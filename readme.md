@@ -605,3 +605,17 @@ will get triggered no more then once per 250ms .
   }
 ```
 
+================================================================================
+
+Prevent hard-coding watch property name:
+
+```javascript
+$scope.$watch( () => vm.myProp, (newValue, oldValue) => console.log(newValue) );
+```
+
+Instead of:
+```javascript
+  $scope.$watch('myController.myProp', (newValue, oldValue) => ...);
+  // OR
+  $scope.$watch('$ctrl.myProp', (newValue, oldValue) => ...);
+```

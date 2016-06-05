@@ -55,3 +55,14 @@ angular.module("myApp", [])
   $scope.uiState.models = ["red", "white", "blue"];
 
 });
+
+
+Prevent hard-coding watch property name:
+
+$scope.$watch( () => vm.myProp, (newValue, oldValue) => console.log(newValue) );
+
+Instead of:
+  $scope.$watch('myController.myProp', (newValue, oldValue) => ...);
+  //
+  $scope.$watch('$ctrl.myProp', (newValue, oldValue) => ...);
+
