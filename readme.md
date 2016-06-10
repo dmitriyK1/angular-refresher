@@ -1,5 +1,12 @@
 # AngularJS Refresher
 
+## Links:
+- https://angularcodereview.com/angularjs/
+- https://github.com/toddmotto/angular-styleguide
+- https://github.com/johnpapa/angular-styleguide
+
+================================================================================
+
 This is a quick refresher of AngularJS concepts compiled from various articles online.
 
 **Place all common dependencies in one cross-app module:**
@@ -418,7 +425,7 @@ Why?: Constants can be injected into any angular component, including providers.
 Events that are relevant globally across the entire app (such as a user
 authenticating or the app closing). If you want events specific to modules,
 services or widgets you should consider Services, Directive Controllers, or 3rd
-Party Libs 
+Party Libs
 
 ================================================================================
 
@@ -704,7 +711,7 @@ filter syntax.
 ```
 
 Angular includes a $filter provider, which you can use to run filters in your
-JavaScript before parsing into the DOM. 
+JavaScript before parsing into the DOM.
 This will preprocess our data before sending it to the View, which avoids the
 step of parsing the DOM
 ```javascript
@@ -721,7 +728,7 @@ $filter('filter')(array, expression, comparator);
 - data stored in services
 
 No need to deregister watchers, they will be removed when the scope is destroyed,
-you don't need to manage those 
+you don't need to manage those
 ```javascript
 var listener = $scope.$watch("quartz", function () {});
 // ...
