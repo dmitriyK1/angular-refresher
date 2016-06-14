@@ -5,6 +5,7 @@
 - https://github.com/toddmotto/angular-styleguide
 - https://github.com/johnpapa/angular-styleguide
 - https://mgechev.github.io/angularjs-style-guide/
+- https://github.com/angular/angular.js/wiki
 
 ================================================================================
 
