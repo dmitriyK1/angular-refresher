@@ -735,3 +735,11 @@ var listener = $scope.$watch("quartz", function () {});
 // ...
 listener();
 ```
+
+================================================================================
+
+**Prevent unnecessary $digest loop in $timeout:**
+
+Set third parameter in $timeout function to false to skip the $digest loop when
+no watched variables are impacted by the invocation of the $timeout callback
+function.
