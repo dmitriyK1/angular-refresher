@@ -5,6 +5,7 @@
 - https://github.com/toddmotto/angular-styleguide
 - https://github.com/johnpapa/angular-styleguide
 - https://mgechev.github.io/angularjs-style-guide/
+- https://github.com/angular/angular.js/wiki
 
 ================================================================================
 
@@ -743,3 +744,17 @@ listener();
 Set third parameter in $timeout function to false to skip the $digest loop when
 no watched variables are impacted by the invocation of the $timeout callback
 function.
+
+================================================================================
+
+**Use primitive value workarounds:**
+
+Having a '.' in your models will ensure that prototypal inheritance is in play. So, use 
+```html
+<input type="text" ng-model="someObj.prop1"> rather than 
+<input type="text" ng-model="prop1">.
+```
+If you really want/need to use a primitive, there are two workarounds:
+- Use $parent.parentScopeProperty in the child scope. This will prevent the child scope from creating its own property.
+- Define a function on the parent scope, and call it from the child, passing the primitive value up to the parent (not always possible)
+
