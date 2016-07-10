@@ -577,7 +577,9 @@ angular
 ```
 ================================================================================
 
-**Use ng-strict-di attribute on ng-app to ensure all functions with dependencies are properly annotated**
+**Use ng-strict-di attribute on ng-app to ensure all functions with dependencies are properly annotated & to improve performance**
+
+The performance gain lies in the fact that the injected modules are annotated explicitly, hence they don’t need to be discovered dynamically.
 
 ```html
 <div ng-app="myApp" ng-strict-di>
