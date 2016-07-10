@@ -760,3 +760,15 @@ If you really want/need to use a primitive, there are two workarounds:
 - Use $parent.parentScopeProperty in the child scope. This will prevent the child scope from creating its own property.
 - Define a function on the parent scope, and call it from the child, passing the primitive value up to the parent (not always possible)
 
+================================================================================
+
+**Use $httpProvider.applyAsync(true) for performance gains**
+
+Making $httpProvider use applyAsync which executes nearby digest calls just once, using a zero timeout.
+
+```javascript
+    myApp.config(function ($httpProvider) {
+      $httpProvider.useApplyAsync(true);
+    });
+```
+
