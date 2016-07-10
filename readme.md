@@ -418,7 +418,7 @@ Why?: Constants can be injected into any angular component, including providers.
 
 ================================================================================
 
-**Unbind event listeners on $scope.$destroy**
+**Unbind event listeners on $scope.$destroy \ element.on('$destroy')**
 
 ================================================================================
 
@@ -749,9 +749,9 @@ function.
 
 **Use primitive value workarounds:**
 
-Having a '.' in your models will ensure that prototypal inheritance is in play. So, use 
+Having a '.' in your models will ensure that prototypal inheritance is in play. So, use
 ```html
-<input type="text" ng-model="someObj.prop1"> rather than 
+<input type="text" ng-model="someObj.prop1"> rather than
 <input type="text" ng-model="prop1">.
 ```
 If you really want/need to use a primitive, there are two workarounds:
