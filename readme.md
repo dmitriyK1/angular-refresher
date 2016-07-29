@@ -640,7 +640,15 @@ Instead of:
     $compileProvider.debugInfoEnabled(false);
   })
 ```
+================================================================================
 
+**Disable log info for production:**
+
+```javascript
+  .config(function($logProvider) {
+    $logProvider.debugEnabled(false);
+  })
+```
 ================================================================================
 
 **Use ng-if instead of ng-show/ng-hide to disable a number of watchers**
