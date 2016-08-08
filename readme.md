@@ -780,3 +780,8 @@ Making $httpProvider use applyAsync which executes nearby digest calls just once
     });
 ```
 
+================================================================================
+
+Use controller when you want to expose an API to other directives. Otherwise use link.
+
+================================================================================
