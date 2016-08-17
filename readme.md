@@ -77,6 +77,9 @@ function SomeService () { }
 
 ```html
 <h1>{{:: page.title  }}</h1>
+<div ng-if="::(user.isSomething && user.isSomethingElse)"></div>
+<div ng-class="::{classNameFoo: user.isSomething}"></div>
+<li ng-repeat="user in ::vm.users"></li>
 ```
 
 ================================================================================
